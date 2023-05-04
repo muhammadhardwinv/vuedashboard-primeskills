@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <chart-card :chart-data="salesChart.data" :chart-options="salesChart.options">
         <div slot="header">
-          <h4 class="card-title">2015 Sales</h4>
+          <h4 class="card-title">2023 Sales</h4>
           <p class="category">All products including Taxes</p>
         </div>
         <div class="stats" slot="footer-title">

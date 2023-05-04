@@ -45,8 +45,14 @@
           ></sidebar-item>
           <sidebar-item
             :link="{
-              name: 'Carbon Intensity',
-              path: '/table-list/carbonintensity',
+              name: 'API List',
+              path: '/table-list/apiList',
+            }"
+          ></sidebar-item>
+          <sidebar-item
+            :link="{
+              name: 'Newspaper',
+              path: '/table-list/newspaper',
             }"
           ></sidebar-item>
         </sidebar-item>

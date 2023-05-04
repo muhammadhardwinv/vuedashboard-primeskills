@@ -37,8 +37,9 @@ const CryptocurrencyTables = () =>
   import("src/pages/Dashboard/Tables/cryptocurrencyTables.vue");
 const BrowserExtensionTables = () =>
   import("src/pages/Dashboard/Tables/browserExtensionTables.vue");
-const CarbonIntensityTables = () =>
-  import("src/pages/Dashboard/Tables/carbonIntensity.vue");
+const APIListTables = () => import("src/pages/Dashboard/Tables/apiList.vue");
+const NewspaperTables = () =>
+  import("src/pages/Dashboard/Tables/newspaperTables.vue");
 
 // Maps pages
 const GoogleMaps = () => import("src/pages/Dashboard/Maps/GoogleMaps.vue");
@@ -142,9 +143,14 @@ let tablesMenu = {
       component: BrowserExtensionTables,
     },
     {
-      path: "carbonintensity",
-      name: "Carbon Intensity Tables",
-      component: CarbonIntensityTables,
+      path: "apilist",
+      name: "API List Tables",
+      component: APIListTables,
+    },
+    {
+      path: "newspaper",
+      name: "Newspaper Tables",
+      component: NewspaperTables,
     },
   ],
 };

@@ -99,7 +99,7 @@
             :chart-responsive-options="barChart.responsiveOptions"
             chart-type="Bar">
             <template slot="header">
-              <h4 class="card-title">2014 Sales</h4>
+              <h4 class="card-title">2022 Sales</h4>
               <p class="card-category">All products including Taxes</p>
             </template>
             <template slot="footer">
