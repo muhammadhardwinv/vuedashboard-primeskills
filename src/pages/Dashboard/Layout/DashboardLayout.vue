@@ -51,8 +51,8 @@
           ></sidebar-item>
           <sidebar-item
             :link="{
-              name: 'Newspaper',
-              path: '/table-list/newspaper',
+              name: 'pagination',
+              path: '/table-list/pagination',
             }"
           ></sidebar-item>
         </sidebar-item>

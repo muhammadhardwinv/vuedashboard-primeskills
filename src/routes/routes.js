@@ -38,8 +38,8 @@ const CryptocurrencyTables = () =>
 const BrowserExtensionTables = () =>
   import("src/pages/Dashboard/Tables/browserExtensionTables.vue");
 const APIListTables = () => import("src/pages/Dashboard/Tables/apiList.vue");
-const NewspaperTables = () =>
-  import("src/pages/Dashboard/Tables/newspaperTables.vue");
+const PaginationTables = () =>
+  import("src/pages/Dashboard/Tables/paginationTables.vue");
 
 // Maps pages
 const GoogleMaps = () => import("src/pages/Dashboard/Maps/GoogleMaps.vue");
@@ -148,9 +148,9 @@ let tablesMenu = {
       component: APIListTables,
     },
     {
-      path: "newspaper",
-      name: "Newspaper Tables",
-      component: NewspaperTables,
+      path: "pagination",
+      name: "Pagination Tables",
+      component: PaginationTables,
     },
   ],
 };
