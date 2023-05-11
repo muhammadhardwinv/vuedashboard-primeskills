@@ -91,7 +91,6 @@ export default {
     AuthLayout,
   },
   data() {
-    //v-model ga akan jalan kalau tidak ada return beserta atribut nya, return data(93) = penampung, return (94) di show di console. v model = penangkap data
     return {
       email: "",
       password: "",
