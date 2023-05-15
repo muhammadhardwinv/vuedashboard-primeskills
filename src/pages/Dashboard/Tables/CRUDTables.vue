@@ -1,140 +1,113 @@
 <template>
-  <auth-layout pageClass="login-page">
-    <div class="row d-flex justify-content-center align-items-center">
-      <div class="col-lg-4 col-md-6 col-sm-8">
-        <ValidationObserver v-slot="{ handleSubmit }">
-          <!--You can specify transitions on initial render. The `card-hidden` class will be present initially and then it will be removed-->
-          <form @submit.prevent="handleSubmit(submit)">
-            <fade-render-transition>
-              <card>
-                <div slot="header">
-                  <h3 class="card-title text-center">Masuk</h3>
-                </div>
-                <div>
-                  <ValidationProvider
-                    name="name"
-                    rules="required|name"
-                    v-slot="{ passed, failed }"
-                  >
-                    <fg-input
-                      type="name"
-                      :error="failed ? 'The name field is required' : null"
-                      :hasSuccess="passed"
-                      label="itemName"
-                      name="name"
-                      v-model="name"
-                    >
-                    </fg-input>
-                  </ValidationProvider>
-                  <ValidationProvider
-                    name="quantity"
-                    rules="required|min:1"
-                    v-slot="{ passed, failed }"
-                  >
-                    <fg-input
-                      type="quantity"
-                      :error="failed ? 'The quantity field is required' : null"
-                      :hasSuccess="passed"
-                      name="quantity"
-                      label="quantity"
-                      v-model="quantity"
-                    >
-                    </fg-input>
-                  </ValidationProvider>
-                  <ValidationProvider
-                    name="category"
-                    rules="required|category"
-                    v-slot="{ passed, failed }"
-                  >
-                    <fg-input
-                      type="category"
-                      :error="failed ? 'The category field is required' : null"
-                      :hasSuccess="passed"
-                      label="category"
-                      name="category"
-                      v-model="category"
-                    >
-                    </fg-input>
-                  </ValidationProvider>
-                </div>
-                <div class="text-center">
-                  <button
-                    @click="onCreate"
-                    type="submit"
-                    class="btn btn-fill btn-info btn-round btn-wd"
-                  >
-                    Submit
-                  </button>
-                  <br />
-                </div>
-              </card>
-            </fade-render-transition>
-          </form>
-        </ValidationObserver>
-      </div>
+  <div class="row">
+    <div class="col-md-12">
+      <card>
+        <div slot="header">
+          <h4 class="card-title">Cryptocurrency in Worldwide</h4>
+        </div>
+        <div class="table-responsive table-full-width">
+          <el-table class="table-striped" :data="cryptocurrency">
+            <el-table-column label="symbol" property="symbol"></el-table-column>
+            <el-table-column label="name" property="name"></el-table-column>
+            <el-table-column
+              label="current_price"
+              property="current_price"
+            ></el-table-column>
+            <el-table-column
+              label="total_volume"
+              property="total_volume"
+            ></el-table-column>
+            <el-table-column
+              label="atl_change_percentage"
+              property="atl_change_percentage"
+            ></el-table-column>
+            <el-table-column label="atl" property="atl"></el-table-column>
+            <el-table-column :min-width="120" fixed="right" label="Actions">
+              <template slot-scope="props">
+                <a
+                  v-tooltip.top-center="'Edit'"
+                  class="btn-warning btn-simple btn-link"
+                  @click="handleEdit(props.row)"
+                  ><i class="fa fa-edit"></i
+                ></a>
+                <a
+                  v-tooltip.top-center="'Delete'"
+                  class="btn-danger btn-simple btn-link"
+                  @click="handleDelete(props.row)"
+                  ><i class="fa fa-times"></i
+                ></a>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+      </card>
     </div>
-  </auth-layout>
+  </div>
 </template>
 <script>
-import { FadeRenderTransition } from "src/components/index";
-import AuthLayout from "./AuthLayout.vue";
-import { extend } from "vee-validate";
-import { required, name, min } from "vee-validate/dist/rules";
+import { Table, TableColumn } from "element-ui";
 import axios from "axios";
-
-extend("name", name);
-extend("quantity", quantity);
-extend("category", category);
-extend("required", required);
-extend("min", min);
-
 export default {
   components: {
-    FadeRenderTransition,
-    AuthLayout,
+    [Table.name]: Table,
+    [TableColumn.name]: TableColumn,
   },
   data() {
     return {
-      name: "",
-      quantity: "",
+      cryptocurrency: [],
     };
   },
-  methods: {
-    submit() {
-      alert("Item successfully added.");
-    },
-    // onCreate() {
-    //   const response = axios
-    //     .post("https://api-lightspace.primeskills.id/api/auth/login", {
-    //       name: this.name,
-    //       quantity: this.quantity,
-    //     })
-    //     .then((response) => {
-    //       this.$router.push({ name: "adminDashboard" });
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // },
-    onCreate() {
-      console.log("Item successfully added.");
-    },
-    toggleNavbar() {
-      document.body.classList.toggle("nav-open");
-    },
-    closeMenu() {
-      document.body.classList.remove("nav-open");
-      document.body.classList.remove("off-canvas-sidebar");
-    },
+  created() {
+    this.getCryptocurrency();
   },
-  beforeDestroy() {
-    this.closeMenu();
+  methods: {
+    handleEdit(data) {
+      this.cryptocurrency.splice();
+      // cari data berdasarkan index ke berapa
+      // console.log(array1.findIndex(isLargeNumber));
+      let index = this.cryptocurrency.findIndex(
+        (element) => element.id == data.id
+      );
+      console.log(index);
+      this.cryptocurrency.(index, 1);
+    handleDelete(data) {
+      this.cryptocurrency.splice();
+      // cari data berdasarkan index ke berapa
+      // console.log(array1.findIndex(isLargeNumber));
+      let index = this.cryptocurrency.findIndex(
+        (element) => element.id == data.id
+      );
+      console.log(index);
+      this.cryptocurrency.splice(index, 1);
+    },
+    getCryptocurrency() {
+      const response = axios
+        .get(
+          "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false",
+          {}
+        )
+        .then((response) => {
+          console.log(response.data);
+          this.cryptocurrency = response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    tableRowClassName(row, index) {
+      if (index === 0) {
+        return "success";
+      } else if (index === 2) {
+        return "info";
+      } else if (index === 4) {
+        return "danger";
+      } else if (index === 6) {
+        return "warning";
+      }
+      return "";
+    },
   },
 };
 </script>
-<style>
-.navbar-nav .nav-item p {
-  line-height: inherit;
-  margin-left: 5px;
-}
-</style>
+<style></style>
