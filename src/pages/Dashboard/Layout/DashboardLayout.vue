@@ -55,6 +55,12 @@
               path: '/table-list/pagination',
             }"
           ></sidebar-item>
+          <sidebar-item
+            :link="{
+              name: 'CRUD',
+              path: '/table-list/crud',
+            }"
+          ></sidebar-item>
         </sidebar-item>
       </template>
     </side-bar>

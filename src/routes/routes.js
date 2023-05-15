@@ -40,6 +40,8 @@ const BrowserExtensionTables = () =>
 const APIListTables = () => import("src/pages/Dashboard/Tables/apiList.vue");
 const PaginationTables = () =>
   import("src/pages/Dashboard/Tables/paginationTables.vue");
+const CRUDTables = () =>
+  import("src/pages/Dashboard/Tables/CRUDTables.vue");
 
 // Maps pages
 const GoogleMaps = () => import("src/pages/Dashboard/Maps/GoogleMaps.vue");
@@ -151,6 +153,11 @@ let tablesMenu = {
       path: "pagination",
       name: "Pagination Tables",
       component: PaginationTables,
+    },
+    {
+      path: "crud",
+      name: "CRUD Tables",
+      component: CRUDTables,
     },
   ],
 };
