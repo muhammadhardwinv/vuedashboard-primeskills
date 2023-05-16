@@ -2,9 +2,22 @@
   <div class="row">
     <div class="col-md-12">
       <card>
-        <div slot="header">
-          <h4 class="card-title">Cryptocurrency in Worldwide</h4>
-        </div>
+        <span class="d-flex justify-content-around" slot="header">
+          <h4 class="card-title align-self-center">
+            Cryptocurrency in Worldwide
+          </h4>
+        </span>
+        <span
+          class="d-flex justify-content-end align-self-center"
+          style="padding-right: 6rem"
+        >
+          <Button
+            v-tooltip.top-center="'Add Data'"
+            class="btn-warning btn-simple btn-link"
+            @click="handleAdd(props)"
+            >Add Data</Button
+          >
+        </span>
         <div class="table-responsive table-full-width">
           <el-table class="table-striped" :data="cryptocurrency">
             <el-table-column label="symbol" property="symbol"></el-table-column>
@@ -42,25 +55,79 @@
         </div>
       </card>
     </div>
+
+    <!-- Modal Edit Data -->
+    <el-dialog title="Data Management" :visible.sync="dialogVisible">
+      <el-form :model="formData">
+        <el-form-item label="Symbol">
+          <el-input v-model="formData.symbol"> </el-input>
+        </el-form-item>
+        <el-form-item label="Name">
+          <el-input v-model="formData.name"></el-input>
+        </el-form-item>
+        <el-form-item label="Current Price">
+          <el-input v-model="formData.current_price"></el-input>
+        </el-form-item>
+        <el-form-item label="Total Volume">
+          <el-input v-model="formData.total_volume"></el-input>
+        </el-form-item>
+        <el-form-item label="Atl Change Percentage">
+          <el-input v-model="formData.atl_change_percentage"></el-input>
+        </el-form-item>
+        <el-form-item label="Atl">
+          <el-input v-model="formData.atl"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="handleSave">Save</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
-import { Table, TableColumn } from "element-ui";
+import {
+  Table,
+  TableColumn,
+  Dialog,
+  Form,
+  FormItem,
+  Input,
+  Button,
+} from "element-ui";
 import axios from "axios";
 export default {
   components: {
     [Table.name]: Table,
     [TableColumn.name]: TableColumn,
+    [Dialog.name]: Dialog,
+    [Form.name]: Form,
+    [FormItem.name]: FormItem,
+    [Input.name]: Input,
+    [Button.name]: Button,
   },
   data() {
     return {
       cryptocurrency: [],
+      dialogVisible: false,
+      formData: {},
+      currentIndex: null,
     };
   },
   created() {
     this.getCryptocurrency();
   },
   methods: {
+    handleAdd() {
+      this.dialogVisible = true;
+      this.formData = { ...this.cryptocurrency[index++] };
+      // let index = this.cryptocurrency.findIndex(
+      //   (element) => element.id == this.cryptocurrency.data.id
+      // );
+      // if (index == null) {
+      //   this.dialogVisible = true;
+      // }
+    },
     handleEdit(data) {
       this.cryptocurrency.splice();
       // cari data berdasarkan index ke berapa
@@ -69,7 +136,19 @@ export default {
         (element) => element.id == data.id
       );
       console.log(index);
-      this.cryptocurrency.(index, 1);
+      if (index !== -1) {
+        this.currentIndex = index;
+        this.formData = { ...this.cryptocurrency[index] };
+        this.dialogVisible = true;
+      }
+      // this.cryptocurrency.slice(index, 1);
+    },
+    handleSave() {
+      if (this.currentIndex !== null) {
+        this.$set(this.cryptocurrency, this.currentIndex, this.formData);
+        this.dialogVisible = false;
+      }
+    },
     handleDelete(data) {
       this.cryptocurrency.splice();
       // cari data berdasarkan index ke berapa
