@@ -97,7 +97,14 @@ export default {
       subscribe: true,
     };
   },
+  // created() {
+  //   this.token = JSON.parse(localStorage.getItem("token")) || [];
+  // },
+
   methods: {
+    getData() {
+      const userData = JSON.parse(localStorage.getItem("data"));
+    },
     submit() {
       alert("Form has been submitted!");
     },
@@ -109,9 +116,15 @@ export default {
         })
         .then((response) => {
           this.$router.push({ name: "adminDashboard" });
+          window.alert("Login Success");
+          // localStorage.setItem(response.data.token);
+          // console.log(response.data.data.token);
+          this.data = response.data.data.token;
+          localStorage.setItem("token", response.data.data.token);
         })
         .catch((error) => {
           console.log(error);
+          window.alert("Login Failed");
         });
     },
     toggleNavbar() {
