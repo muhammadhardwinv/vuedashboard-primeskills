@@ -41,11 +41,6 @@
                     >
                     </fg-input>
                   </ValidationProvider>
-                  <fg-input>
-                    <l-checkbox v-model="subscribe">
-                      Subscribe to newsletter
-                    </l-checkbox>
-                  </fg-input>
                 </div>
                 <div class="text-center">
                   <button
@@ -53,7 +48,7 @@
                     type="submit"
                     class="btn btn-fill btn-info btn-round btn-wd"
                   >
-                    Masuk
+                    Login
                   </button>
                   <br />
                   <div class="forgot">
@@ -86,7 +81,6 @@ extend("min", min);
 
 export default {
   components: {
-    LCheckbox,
     FadeRenderTransition,
     AuthLayout,
   },
@@ -115,8 +109,8 @@ export default {
           password: this.password,
         })
         .then((response) => {
+          // window.alert("Login Success");
           this.$router.push({ name: "adminDashboard" });
-          window.alert("Login Success");
           // localStorage.setItem(response.data.token);
           // console.log(response.data.data.token);
           this.data = response.data.data.token;

@@ -105,7 +105,8 @@ export default {
   methods: {
     onLogout() {
       this.$router.push({ name: "Login" });
-      localStorage.clear();
+      this.data = response.data.data.token;
+      localStorage.removeItem("token", response.data.data.token);
     },
     capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);

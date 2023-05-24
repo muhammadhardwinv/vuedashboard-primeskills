@@ -42,7 +42,7 @@
     "vue-paginate": "^3.6.0",
     "vue-paginated-resource": "^0.0.3",
     "vue-pagination-2": "^3.1.0",
-    "vue-router": "^3.5.2",
+    "vue-router": "^3.6.5",
     "vue-tables-2": "^2.3.5",
     "vue2-google-maps": "0.10.7",
     "vue2-transitions": "0.3.0",

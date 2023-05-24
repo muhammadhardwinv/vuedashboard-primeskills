@@ -2,7 +2,7 @@
   <card class="card-user">
     <div slot="image">
       <img
-        src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
+        src="https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"
         alt="..."
       />
     </div>
@@ -10,12 +10,11 @@
       <div class="author">
         <img
           class="avatar border-gray"
-          src="static/img/default-avatar.png"
+          src="https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"
           alt="..."
         />
         <h4 class="title">
-          Muhammad Hardwin V
-          <br />
+          User
           <a href="#">
             <small>hardwin14</small>
           </a>

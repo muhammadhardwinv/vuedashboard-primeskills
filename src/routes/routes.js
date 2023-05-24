@@ -4,6 +4,8 @@ import NotFound from "src/pages/GeneralViews/NotFoundPage.vue";
 // Dashboard pages
 import Overview from "src/pages/Dashboard/Dashboard/Overview.vue";
 import Stats from "src/pages/Dashboard/Dashboard/Stats.vue";
+import Vue from "vue";
+import VueRouter from "vue-router";
 
 // Pages
 import User from "src/pages/Dashboard/Pages/UserProfile.vue";
@@ -40,8 +42,7 @@ const BrowserExtensionTables = () =>
 const APIListTables = () => import("src/pages/Dashboard/Tables/apiList.vue");
 const PaginationTables = () =>
   import("src/pages/Dashboard/Tables/paginationTables.vue");
-const CRUDTables = () =>
-  import("src/pages/Dashboard/Tables/CRUDTables.vue");
+const CRUDTables = () => import("src/pages/Dashboard/Tables/CRUDTables.vue");
 
 // Maps pages
 const GoogleMaps = () => import("src/pages/Dashboard/Maps/GoogleMaps.vue");
@@ -223,9 +224,15 @@ let lockPage = {
 
 const routes = [
   {
-    path: "/",
+    path: "/admin",
     name: "adminDashboard",
     redirect: "/admin/overview",
+  },
+  {
+    path: "/",
+    name: "Login",
+    redirect: "/login",
+    component: Login,
   },
   componentsMenu,
   formsMenu,

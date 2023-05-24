@@ -64,7 +64,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: "e-Information",
+      default: "LEN Logo",
     },
     backgroundColor: {
       type: String,

@@ -1,14 +1,22 @@
 <template>
   <div class="user">
     <div class="photo">
-      <img src="https://media.licdn.com/dms/image/C5603AQEYzW0hzo16wg/profile-displayphoto-shrink_800_800/0/1626414287465?e=1688601600&v=beta&t=85JEl0PVFwPZ4smmMSSMyiUEwJqHYGiRxUW3MMfT2JY" alt="avatar"/>
+      <img
+        src="https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg"
+        alt="avatar"
+      />
     </div>
     <div class="info">
-      <a data-toggle="collapse" :aria-expanded="!isClosed" @click.stop="toggleMenu" href="#">
-           <span>
-             {{title}}
-             <b class="caret"></b>
-          </span>
+      <a
+        data-toggle="collapse"
+        :aria-expanded="!isClosed"
+        @click.stop="toggleMenu"
+        href="#"
+      >
+        <span>
+          {{ title }}
+          <b class="caret"></b>
+        </span>
       </a>
       <div class="clearfix"></div>
       <div>
@@ -16,19 +24,19 @@
           <ul class="nav" v-show="!isClosed">
             <slot>
               <li>
-                <a class="profile-dropdown" href="#pablo">
+                <a class="profile-dropdown" href="">
                   <span class="sidebar-mini">MP</span>
                   <span class="sidebar-normal">My Profile</span>
                 </a>
               </li>
               <li>
-                <a class="profile-dropdown" href="#pablo">
+                <a class="profile-dropdown">
                   <span class="sidebar-mini">EP</span>
                   <span class="sidebar-normal">Edit Profile</span>
                 </a>
               </li>
               <li>
-                <a class="profile-dropdown" href="#pablo">
+                <a class="profile-dropdown">
                   <span class="sidebar-mini">S</span>
                   <span class="sidebar-normal">Settings</span>
                 </a>
@@ -41,32 +49,32 @@
   </div>
 </template>
 <script>
-  import CollapseTransition from 'element-ui/lib/transitions/collapse-transition'
+import CollapseTransition from "element-ui/lib/transitions/collapse-transition";
 
-  export default {
-    components: {
-      [CollapseTransition.name]: CollapseTransition
+export default {
+  components: {
+    [CollapseTransition.name]: CollapseTransition,
+  },
+  props: {
+    title: {
+      type: String,
+      default: "User",
     },
-    props: {
-      title: {
-        type: String,
-        default: 'Muhammad Hardwin V'
-      }
+  },
+  data() {
+    return {
+      isClosed: true,
+    };
+  },
+  methods: {
+    toggleMenu() {
+      this.isClosed = !this.isClosed;
     },
-    data () {
-      return {
-        isClosed: true
-      }
-    },
-    methods: {
-      toggleMenu () {
-        this.isClosed = !this.isClosed
-      }
-    }
-  }
+  },
+};
 </script>
 <style>
-  .collapsed {
-    transition: opacity 1s;
-  }
+.collapsed {
+  transition: opacity 1s;
+}
 </style>

@@ -4,35 +4,36 @@
       <form method="#" action="#">
         <div class="user-profile">
           <div class="author">
-            <img class="avatar" src="static/img/default-avatar.png" alt="...">
+            <img class="avatar" src="static/img/default-avatar.png" alt="..." />
           </div>
-          <h4>Muhammad Hardwin </h4>
+          <h4>User</h4>
           <fg-input type="password" placeholder="Enter Password"></fg-input>
-          <button type="button" class="btn btn-round btn-info btn-wd">Unlock</button>
+          <button type="button" class="btn btn-round btn-info btn-wd">
+            Unlock
+          </button>
         </div>
       </form>
     </div>
   </auth-layout>
 </template>
 <script>
-  import AuthLayout from './AuthLayout.vue'
-  export default {
-    components: {
-      AuthLayout
+import AuthLayout from "./AuthLayout.vue";
+export default {
+  components: {
+    AuthLayout,
+  },
+  methods: {
+    toggleNavbar() {
+      document.body.classList.toggle("nav-open");
     },
-    methods: {
-      toggleNavbar () {
-        document.body.classList.toggle('nav-open')
-      },
-      closeMenu () {
-        document.body.classList.remove('nav-open')
-        document.body.classList.remove('off-canvas-sidebar')
-      }
+    closeMenu() {
+      document.body.classList.remove("nav-open");
+      document.body.classList.remove("off-canvas-sidebar");
     },
-    beforeDestroy () {
-      this.closeMenu()
-    }
-  }
+  },
+  beforeDestroy() {
+    this.closeMenu();
+  },
+};
 </script>
-<style>
-</style>
+<style></style>

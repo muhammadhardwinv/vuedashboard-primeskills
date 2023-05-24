@@ -4,43 +4,56 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute">
         <div class="container">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="#pablo">Vue LBD Pro</a>
-            <button class="navbar-toggler"
-                    type="button"
-                    @click="showMenu = !showMenu"
-                    data-toggle="collapse"
-                    aria-controls="navigation-index"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
+            <a class="navbar-brand" href="/login">Vue LBD Pro</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              @click="showMenu = !showMenu"
+              data-toggle="collapse"
+              aria-controls="navigation-index"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
               <span class="navbar-toggler-bar burger-lines"></span>
               <span class="navbar-toggler-bar burger-lines"></span>
               <span class="navbar-toggler-bar burger-lines"></span>
             </button>
           </div>
           <el-collapse-transition>
-            <div class="navbar-collapse justify-content-end" id="navbar" v-show="showMenu">
-              <ul class="navbar-nav">
-                <router-link to="/admin" tag="li" class="nav-item">
-                  <a class="nav-link">
-                    <i class="nc-icon nc-chart-pie-35"></i> Dashboard
+            <div
+              class="navbar-collapse justify-content-end"
+              id="navbar"
+              v-show="showMenu"
+            >
+              <span class="navbar-nav">
+                <router-link to="/aboutUs" tag="li" class="nav-item">
+                  <a class="nav-link" style="white-space: nowrap"
+                    >About Us<br />
                   </a>
                 </router-link>
-                <router-link to="/register" tag="li" class="nav-item">
+                <!-- <router-link
+                  to="/admin"
+                  tag="li"
+                  class="nav-item"
+                  @click="onClick"
+                >
                   <a class="nav-link">
-                    <i class="nc-icon nc-badge"></i> Register
+                    <i class="nc-icon nc-chart-pie-35"></i>
+                    Dashboard
                   </a>
+                </router-link> -->
+                <router-link to="/register" tag="li" class="nav-item">
+                  <a class="nav-link">Register</a>
                 </router-link>
                 <router-link to="/login" tag="li" class="nav-item">
-                  <a class="nav-link">
-                    <i class="nc-icon nc-mobile"></i> Login
-                  </a>
+                  <a class="nav-link">Login</a>
                 </router-link>
-                <router-link to="/lock" tag="li" class="nav-item">
+                <!-- <router-link to="/lock" tag="li" class="nav-item">
                   <a class="nav-link">
                     <i class="nc-icon nc-key-25"></i> Lock
                   </a>
-                </router-link>
-              </ul>
+                </router-link> -->
+              </span>
             </div>
           </el-collapse-transition>
         </div>
@@ -55,7 +68,8 @@
 
         <footer class="footer footer-transparent">
           <div
-            class="container d-flex flex-lg-row flex-column justify-content-lg-between justify-content-center align-items-center">
+            class="container d-flex flex-lg-row flex-column justify-content-lg-between justify-content-center align-items-center"
+          >
             <nav>
               <ul>
                 <li>
@@ -74,14 +88,22 @@
             </nav>
             <div class="copyright">
               &copy; Coded with
-              <i class="fa fa-heart heart"></i> by <a href="https://www.creative-tim.com/?ref=pdf-vuejs" target="_blank" rel="noopener">Creative Tim</a>.
+              <i class="fa fa-heart heart"></i> by
+              <a
+                href="https://www.creative-tim.com/?ref=pdf-vuejs"
+                target="_blank"
+                rel="noopener"
+                >Creative Tim</a
+              >.
             </div>
           </div>
         </footer>
 
-        <div class="full-page-background"
-             style="background-image: url(static/img/full-screen-image-1.jpg) "></div>
-        </div>
+        <div
+          class="full-page-background"
+          style="background-image: url(static/img/full-screen-image-1.jpg)"
+        ></div>
+      </div>
     </div>
     <div class="collapse navbar-collapse off-canvas-sidebar">
       <ul class="nav nav-mobile-menu">
@@ -96,60 +118,63 @@
   </div>
 </template>
 <script>
-  import CollapseTransition from 'element-ui/lib/transitions/collapse-transition'
+import CollapseTransition from "element-ui/lib/transitions/collapse-transition";
 
-  export default {
-    components: {
-      [CollapseTransition.name]: CollapseTransition
+export default {
+  components: {
+    [CollapseTransition.name]: CollapseTransition,
+  },
+  props: {
+    pageClass: {
+      type: String,
+      default: "login-page",
     },
-    props: {
-      pageClass: {
-        type: String,
-        default: 'login-page'
-      },
-      backgroundColor: {
-        type: String,
-        default: 'black'
-      }
+    backgroundColor: {
+      type: String,
+      default: "black",
     },
-    data () {
-      return {
-        showMenu: false
-      }
+  },
+  data() {
+    return {
+      showMenu: false,
+    };
+  },
+  methods: {
+    onClick() {
+      window.alert("You must logged in first to access dashboard.");
     },
-    methods: {
-      toggleNavbar () {
-        document.body.classList.toggle('nav-open')
-      },
-      closeMenu () {
-        document.body.classList.remove('nav-open')
-        document.body.classList.remove('off-canvas-sidebar')
-      }
+    toggleNavbar() {
+      document.body.classList.toggle("nav-open");
     },
-    beforeDestroy () {
-      this.closeMenu()
-    }
-  }
+    closeMenu() {
+      document.body.classList.remove("nav-open");
+      document.body.classList.remove("off-canvas-sidebar");
+    },
+  },
+  beforeDestroy() {
+    this.closeMenu();
+  },
+};
 </script>
 <style>
-  .navbar-nav .nav-item p {
-    line-height: inherit;
-    margin-left: 5px;
-  }
-  .navbar-wrapper{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  .wrapper-full-page .navbar-toggler,
-  .wrapper-full-page .navbar-collapse .navbar-nav{
-    margin-right: 30px;
-  }
-  .navbar-collapse .navbar-nav .nav-link {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
+.navbar-nav .nav-item p {
+  line-height: inherit;
+  margin-left: 5px;
+}
+.navbar-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.wrapper-full-page .navbar-toggler,
+.wrapper-full-page .navbar-collapse .navbar-nav {
+  margin-right: 30px;
+}
+.navbar-collapse .navbar-nav .nav-link {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 </style>
